@@ -7,7 +7,7 @@ $this->title = 'My Yii Application';
 <?php
 use webvimark\modules\UserManagement\components\GhostMenu;
 use webvimark\modules\UserManagement\UserManagementModule;
-
+// teste
 echo GhostMenu::widget([
 	'encodeLabels'=>false,
 	'activateParents'=>true,
