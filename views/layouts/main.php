@@ -59,9 +59,14 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         ],
         'items' => [
             ['label' => FA::icon('cog')->spin().' Usuários', 'items' => UserManagementModule::menuItems()],
-            ['label' => FA::icon('cog')->spin().' Usuários', 'items' => UserManagementModule::menuItems()],
             Yii::$app->user->isGuest
-                ? ['label' => FA::icon('lock').' Login', 'url' => ['/site/login']]
+                ? ['label' => FA::icon('lock').' Login' ,'items' => [
+                    ['label'=>'Login', 'url'=>['/user-management/auth/login']],
+                    ['label'=>'Registration', 'url'=>['/user-management/auth/registration']],
+                    ['label'=>'Change own password', 'url'=>['/user-management/auth/change-own-password']],
+                    ['label'=>'Password recovery', 'url'=>['/user-management/auth/password-recovery']],
+                    ['label'=>'E-mail confirmation', 'url'=>['/user-management/auth/confirm-email']],
+                ]]
                 : '<li class="nav-item">'
                     . Html::beginForm(['/site/logout'])
                     . Html::submitButton(
