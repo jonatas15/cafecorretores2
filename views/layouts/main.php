@@ -28,6 +28,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
     <title><?= Html::encode($this->title) ?></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
@@ -47,7 +48,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav me-auto mb-2 mb-lg-0'],
         'items' => [
             ['label' => FA::icon('home').' Home', 'url' => ['/site/index']],
-            // ['label' => 'About', 'url' => ['/site/about']],
+            ['label' => FA::icon('walking').' Corretores', 'url' => ['/corretor']],
+            // ['label' => 'About', 'url' => ['/site/about']], 
             // ['label' => 'Contact', 'url' => ['/site/contact']],
         ]
     ]);
