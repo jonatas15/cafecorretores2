@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Corretor;
 use app\models\CorretorSearch;
+use app\models\Numacros;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -100,6 +101,15 @@ class CorretorController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+    public function actionNumacros()
+    {
+        $model = new Numacros;
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        }
     }
 
     /**

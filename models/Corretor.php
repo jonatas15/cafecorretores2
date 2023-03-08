@@ -85,7 +85,10 @@ class Corretor extends \yii\db\ActiveRecord
      */
     public function getNumacros()
     {
-        return $this->hasMany(Numacros::class, ['corretor_id' => 'id']);
+        return $this->hasMany(Numacros::class, ['corretor_id' => 'id'])->orderBy([
+            'data' => SORT_DESC,
+            'mes_referencia' => SORT_DESC,
+        ])->limit(12);
     }
 
     /**
