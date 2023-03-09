@@ -110,8 +110,17 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         float: right !important;
     }
 </style>
-
 <?php $this->endBody() ?>
+<script>
+    $(document).ready(function() {
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+            event.preventDefault();
+            return false;
+            }
+        });
+    });
+</script>
 </body>
 </html>
 <?php $this->endPage() ?>

@@ -53,19 +53,19 @@ class Numacros extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'corretor_id' => 'Corretor ID',
+            'id' => 'Id',
+            'corretor_id' => 'Corretor',
             'leads_recebidos' => 'Leads Recebidos',
-            'percentual_conversao' => 'Percentual Conversao',
-            'quant_vendas_vgc' => 'Quant Vendas Vgc',
-            'quant_vendas_vgv' => 'Quant Vendas Vgv',
-            'quant_visitas' => 'Quant Visitas',
-            'quant_imoveis_agenciados' => 'Quant Imoveis Agenciados',
-            'ticket_medio_venda' => 'Ticket Medio Venda',
-            'custo_lead' => 'Custo Lead',
-            'pos_ranking_geral_vendas' => 'Pos Ranking Geral Vendas',
+            'percentual_conversao' => 'Percentual de Conversão',
+            'quant_vendas_vgc' => 'Quant. Vendas VGC',
+            'quant_vendas_vgv' => 'Quant. Vendas VGV',
+            'quant_visitas' => 'Quant. de Visitas',
+            'quant_imoveis_agenciados' => 'Quant. Imóveis Agenciados',
+            'ticket_medio_venda' => 'Ticket Médio de Venda',
+            'custo_lead' => 'Custo do Lead',
+            'pos_ranking_geral_vendas' => 'Posição no Ranking geral de vendas',
             'data' => 'Data',
-            'mes_referencia' => 'Mes Referencia',
+            'mes_referencia' => 'Mês de Referência',
         ];
     }
 

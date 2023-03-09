@@ -59,11 +59,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'header' => 'Nºs Macro',
                 'format' => 'raw',
                 'value' => function ($data) {
-                    $corretor = Corretor::findOne($data->id);
-                    return $this->render('macros', [
-                        'model' => $corretor,
-                    ]);
-                }
+                    return '<center>'.$this->render('macros', [
+                        'id' => $data->id,
+                    ]).'</center>';
+                },
+                'headerOptions' => ['style' => 'width:5%; text-align: center'],
             ],
             // [
             //     'attribute' => 'id',
@@ -76,15 +76,30 @@ $this->params['breadcrumbs'][] = $this->title;
             //         ]);
             //     }
             // ]
-            // [
-            //     'class' => ActionColumn::className(),
-            //     'urlCreator' => function ($action, Corretor $model, $key, $index, $column) {
-            //         return Url::toRoute([$action, 'id' => $model->id]);
-            //      }
-            // ],
+            [
+                'header' => 'Gerenciar',
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, Corretor $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 },
+                 'template' => '<center id="menu-acoes">{update} {delete}</center>'
+            ],
         ],
     ]); ?>
 
     <?php Pjax::end(); ?>
 
 </div>
+<style>
+    #menu-acoes {
+        padding-top: 10px;
+    }
+    #menu-acoes a {
+        padding: 8px;
+        border: 1px solid blue;
+        border-radius: 5px;
+        background-color: blue;
+        top: 20px !important;
+        color: white !important;
+    }
+</style>

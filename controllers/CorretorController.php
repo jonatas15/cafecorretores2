@@ -8,6 +8,7 @@ use app\models\Numacros;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use kartik\range\RangeInput;
 
 /**
  * CorretorController implements the CRUD actions for Corretor model.
@@ -72,7 +73,7 @@ class CorretorController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                $this->redirect(\Yii::$app->request->referrer);
             }
         } else {
             $model->loadDefaultValues();
@@ -95,7 +96,7 @@ class CorretorController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $this->redirect('index');
         }
 
         return $this->render('update', [
@@ -108,7 +109,7 @@ class CorretorController extends Controller
         $model = new Numacros;
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            $this->redirect(\Yii::$app->request->referrer);
         }
     }
 
@@ -140,5 +141,18 @@ class CorretorController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function rangecampo($form, $modelmacros, $campo, $value, $max, $min, $icon) {
+        $modelmacros->$campo = $value;
+        return $form->field($modelmacros, $campo)->widget(RangeInput::classname(), [
+            'options' => [
+                'placeholder' => 'Leads', 
+                'size' => 'lg',
+            ],
+            'html5Container' => ['style' => 'width: 70%'],
+            'html5Options' => ['min' => $min, 'max' => $max, 'style' => 'width: 100%'],
+            'addon' => ['append' => ['content' => "<i class='fas fa-solid fa-$icon'></i>"]]
+        ]);
     }
 }

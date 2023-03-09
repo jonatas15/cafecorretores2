@@ -49,12 +49,12 @@ class Corretor extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'Id',
             'nome' => 'Nome',
             'email' => 'Email',
             'celular' => 'Celular',
             'registro' => 'Registro',
-            'obs' => 'Obs',
+            'obs' => 'Observações',
         ];
     }
 

@@ -2,31 +2,33 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\widgets\MaskedInput;
 
 /** @var yii\web\View $this */
 /** @var app\models\Corretor $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="corretor-form">
+<div class="row corretor-form">
 
     <?php $form = ActiveForm::begin([
-        'action' => 'corretor/create',
+        'action' => $modo == 'create' ? '/corretor/create':'/corretor/update?id='.$model->id,
         'options' => [
-            ]
+        ]
     ]); ?>
 
-    <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'celular')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'registro')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'obs')->textarea(['rows' => 6]) ?>
-
-    <div class="form-group">
+    <div class="col-12 col-md-12"><?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?></div>
+    <div class="col-12 col-md-12"><?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?></div>
+    <div class="col-12 col-md-12"><?= $form->field($model, 'celular')->widget(MaskedInput::className(), [
+        'mask' => '(99) 99999-9999',
+        'options'=>[
+            'inputmode'=>"numeric",
+            'class'=>"form-control"
+        ]
+    ]) ?></div>
+    <div class="col-12 col-md-12"><?= $form->field($model, 'registro')->textInput(['maxlength' => true]) ?></div>
+    <div class="col-12 col-md-12"><?= $form->field($model, 'obs')->textarea(['rows' => 6]) ?></div>
+    <div class="col-12 col-md-12">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
