@@ -49,6 +49,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             // 'id',
+            [
+                'attribute'=>'foto',
+                'filter'=>'',
+                'format'=>'html',
+                'value'=>function($data){
+                    return Html::img(Yii::$app->homeUrl.'usuarios/'.$data->foto, ['style'=> [
+                        'max-height' => '40px',
+                        'max-width' => '50px',
+                    ]]);
+                }
+            ],
             'nome',
             'email:email',
             'celular',

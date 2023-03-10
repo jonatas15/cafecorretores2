@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+// use yii\widgets\ActiveForm;
+use yii\bootstrap5\ActiveForm;
 use yii\widgets\MaskedInput;
 
 /** @var yii\web\View $this */
@@ -13,11 +14,23 @@ use yii\widgets\MaskedInput;
 
     <?php $form = ActiveForm::begin([
         'action' => $modo == 'create' ? '/corretor/create':'/corretor/update?id='.$model->id,
-        'options' => [
-        ]
+        'options' => ['enctype' => 'multipart/form-data']
     ]); ?>
 
-    <div class="col-12 col-md-12"><?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?></div>
+    <div class="col-md-12">
+        <?php //= $form->field($model, 'foto')->textInput(['maxlength' => true]) ?>
+        <?php if(!$model->isNewRecord): ?>
+        <div class="col-md-12" style="text-align:center">
+        <?= Html::img(Yii::$app->homeUrl.'usuarios/'.$model->foto, ['width' => '200']);?>
+        <hr>
+        </div>
+        <?php endif; ?>
+        <div class="col-md-12" style="text-align:center">
+        <?= $form->field($model, 'eventImage')->fileInput() ?>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-12 form-group"><?= $form->field($model, 'nome')->textInput(['maxlength' => true, 'class' => 'form-control']) ?></div>
     <div class="col-12 col-md-12"><?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?></div>
     <div class="col-12 col-md-12"><?= $form->field($model, 'celular')->widget(MaskedInput::className(), [
         'mask' => '(99) 99999-9999',
@@ -29,7 +42,7 @@ use yii\widgets\MaskedInput;
     <div class="col-12 col-md-12"><?= $form->field($model, 'registro')->textInput(['maxlength' => true]) ?></div>
     <div class="col-12 col-md-12"><?= $form->field($model, 'obs')->textarea(['rows' => 6]) ?></div>
     <div class="col-12 col-md-12">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

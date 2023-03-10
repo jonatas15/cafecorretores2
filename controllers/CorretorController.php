@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use kartik\range\RangeInput;
+use yii\web\UploadedFile;
 
 /**
  * CorretorController implements the CRUD actions for Corretor model.
@@ -72,8 +73,17 @@ class CorretorController extends Controller
         $model = new Corretor();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                $this->redirect(\Yii::$app->request->referrer);
+            // $model->eventImage = UploadedFile::getInstance($model, 'eventImage');
+            if ($model->load($this->request->post())) {
+                $model->eventImage = UploadedFile::getInstance($model, 'eventImage');
+                if ($model->eventImage)
+                    $model->foto = $model->eventImage->baseName.'.'.$model->eventImage->extension;
+                if ($model->save()) {
+                    if ($model->eventImage){
+                        $model->upload();
+                    }
+                    $this->redirect(\Yii::$app->request->referrer);
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -95,8 +105,16 @@ class CorretorController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            $this->redirect('index');
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $model->eventImage = UploadedFile::getInstance($model, 'eventImage');
+            if ($model->eventImage)
+                $model->foto = $model->eventImage->baseName.'.'.$model->eventImage->extension;
+            if ($model->save()) {
+                if ($model->eventImage){
+                    $model->upload();
+                }
+                $this->redirect('index');
+            }
         }
 
         return $this->render('update', [
@@ -143,12 +161,13 @@ class CorretorController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
-    public function rangecampo($form, $modelmacros, $campo, $value, $max, $min, $icon) {
+    public function rangecampo($form, $modelmacros, $campo, $value, $max, $min, $icon, $idcorretor) {
         $modelmacros->$campo = $value;
         return $form->field($modelmacros, $campo)->widget(RangeInput::classname(), [
             'options' => [
                 'placeholder' => 'Leads', 
                 'size' => 'lg',
+                'id' => $campo.'_'.$idcorretor
             ],
             'html5Container' => ['style' => 'width: 70%'],
             'html5Options' => ['min' => $min, 'max' => $max, 'style' => 'width: 100%'],

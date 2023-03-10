@@ -45,12 +45,12 @@ $modelmacros = new \app\models\Numacros();
     <div class=""><?= $form->field($modelmacros, 'corretor_id')->hiddenInput(['value' => $model->id])->label(false) ?></div>
     <div class=""><?= $form->field($modelmacros, 'data')->hiddenInput(['value' => date('Y-m-d')])->label(false) ?></div>
     <div class="row">
-        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'leads_recebidos', 1, 100, 1, 'star'); ?></div>
-        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'percentual_conversao', 1, 100, 1, 'percent'); ?></div>
-        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'quant_vendas_vgc', 1, 100, 1, 'dollar-sign'); ?></div>
-        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'quant_vendas_vgv', 1, 100, 1, 'dollar-sign'); ?></div>
-        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'quant_visitas', 1, 100, 1, 'home'); ?></div>
-        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'quant_imoveis_agenciados', 1, 100, 1, 'home'); ?></div>
+        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'leads_recebidos', 1, 100, 1, 'star', $id); ?></div>
+        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'percentual_conversao', 1, 100, 1, 'percent', $id); ?></div>
+        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'quant_vendas_vgc', 1, 100, 1, 'dollar-sign', $id); ?></div>
+        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'quant_vendas_vgv', 1, 100, 1, 'dollar-sign', $id); ?></div>
+        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'quant_visitas', 1, 100, 1, 'home', $id); ?></div>
+        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'quant_imoveis_agenciados', 1, 100, 1, 'home', $id); ?></div>
         <!-- <div class="col-12 col-md-6"><?php //= rangecampo($form, $modelmacros, 'ticket_medio_venda', 1, 20, 1, 'circle'); ?></div> -->
         <div class="col-12 col-md-6"><?= $form->field($modelmacros, 'ticket_medio_venda')->widget(MaskMoney::classname(), [
             'pluginOptions' => [
@@ -59,8 +59,11 @@ $modelmacros = new \app\models\Numacros();
                 'decimal' => ',',
                 'precision' => 2,
                 'allowNegative' => false,
-                'value' => 0
+                'value' => 0,
             ],
+            'options' => [
+                'id' => 'ticket_medio_venda_'.$id
+            ]
         ]); ?></div>
         <!-- <div class="col-12 col-md-6"><?php //= rangecampo($form, $modelmacros, 'custo_lead', 1, 20, 1, 'dollar-sign'); ?></div> -->
         <div class="col-12 col-md-6"><?= $form->field($modelmacros, 'custo_lead')->widget(MaskMoney::classname(), [
@@ -70,10 +73,13 @@ $modelmacros = new \app\models\Numacros();
                 'decimal' => ',',
                 'precision' => 2,
                 'allowNegative' => false,
-                'value' => 0
+                'value' => 0,
             ],
+            'options' => [
+                'id' => 'custo_lead_'.$id
+            ]
         ]); ?></div>
-        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'pos_ranking_geral_vendas', 1, 100, 1, 'list'); ?></div>
+        <div class="col-12 col-md-6"><?= $this->context->rangecampo($form, $modelmacros, 'pos_ranking_geral_vendas', 1, 100, 1, 'list', $id); ?></div>
         <div class="col-12 col-md-6"><?php
                 $modelmacros->mes_referencia = date('m');
             ?>

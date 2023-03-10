@@ -1,6 +1,8 @@
 <?php
 
 namespace app\models;
+use yii\web\UploadedFile;
+
 
 use Yii;
 
@@ -24,6 +26,7 @@ class Corretor extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $eventImage;
     public static function tableName()
     {
         return 'corretor';
@@ -37,9 +40,11 @@ class Corretor extends \yii\db\ActiveRecord
         return [
             [['nome', 'email', 'celular'], 'required'],
             [['obs'], 'string'],
+            [['foto'], 'string'],
             [['nome'], 'string', 'max' => 250],
             [['email'], 'string', 'max' => 100],
             [['celular', 'registro'], 'string', 'max' => 15],
+            [['eventImage'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, gif, jpeg, PNG, JPG, GIF, JPEG']
         ];
     }
 
@@ -99,5 +104,17 @@ class Corretor extends \yii\db\ActiveRecord
     public function getWhatssends()
     {
         return $this->hasMany(Whatssend::class, ['corretor_id' => 'id']);
+    }
+    /**
+     * Upload de foto
+     */
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->eventImage->saveAs(Yii::$app->basePath.'/web/usuarios/' . $this->eventImage->baseName . '.' . $this->eventImage->extension);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
