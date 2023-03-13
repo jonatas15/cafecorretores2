@@ -118,4 +118,19 @@ class Corretor extends \yii\db\ActiveRecord
             return false;
         }
     }
+
+    // Para a API
+    public function fields() {
+        return [
+            'id',
+            'nome',
+            'email',
+            'celular',
+            'registro',
+            'eventImage',
+            'macros' => function(Corretor $model) {
+                return $model->numacros;
+            }
+        ];
+    }
 }
