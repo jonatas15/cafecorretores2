@@ -60,6 +60,7 @@ class Corretor extends \yii\db\ActiveRecord
             'celular' => 'Celular',
             'registro' => 'Registro',
             'obs' => 'Observações',
+            'eventImage' => 'Foto'
         ];
     }
 

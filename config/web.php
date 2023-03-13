@@ -54,12 +54,26 @@ $config = [
         */
         'urlManager' => [
             'enablePrettyUrl' => true,
+            // 'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'pluralize' => false,
+                    'controller' => 'api\corretor'
+                ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'pluralize' => false,
+                    'controller' => 'api\numacros'
+                ],
             ],
         ],
     ],
     'modules' => [
+        'api' => [
+            'class' => 'app\modules\api\ApiModule',
+        ],
         'user-management' => [
             'class' => 'webvimark\modules\UserManagement\UserManagementModule',
     
