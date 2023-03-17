@@ -129,7 +129,7 @@ class Corretor extends \yii\db\ActiveRecord
             'registro',
             'eventImage',
             'macros' => function(Corretor $model) {
-                return $model->numacros;
+                return array_reverse($model->numacros);
             }
         ];
     }

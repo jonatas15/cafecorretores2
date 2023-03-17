@@ -13,7 +13,7 @@ use yii\widgets\MaskedInput;
 <div class="row corretor-form">
 
     <?php $form = ActiveForm::begin([
-        'action' => $modo == 'create' ? '/corretor/create':'/corretor/update?id='.$model->id,
+        'action' => $modo == 'create' ? Yii::$app->homeUrl.'corretor/create':Yii::$app->homeUrl.'corretor/update?id='.$model->id,
         'options' => ['enctype' => 'multipart/form-data']
     ]); ?>
 

@@ -38,7 +38,7 @@ Modal::begin([
 ?>
 <?php 
 $form = ActiveForm::begin([
-    'action' => '/corretor/numacros'
+    'action' => Yii::$app->homeUrl.'corretor/numacros'
 ]); 
 $modelmacros = new \app\models\Numacros();
 ?>
