@@ -32,6 +32,7 @@ use yii\widgets\MaskedInput;
 
     <div class="col-12 col-md-12 form-group"><?= $form->field($model, 'nome')->textInput(['maxlength' => true, 'class' => 'form-control']) ?></div>
     <div class="col-12 col-md-12"><?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?></div>
+    <div class="col-12 col-md-12"><?= $form->field($model, 'registro')->textInput(['maxlength' => true]) ?></div>
     <div class="col-12 col-md-12"><?= $form->field($model, 'celular')->widget(MaskedInput::className(), [
         'mask' => '(99) 99999-9999',
         'options'=>[
@@ -39,7 +40,6 @@ use yii\widgets\MaskedInput;
             'class'=>"form-control"
         ]
     ]) ?></div>
-    <div class="col-12 col-md-12"><?= $form->field($model, 'registro')->textInput(['maxlength' => true]) ?></div>
     <div class="col-12 col-md-12"><?= $form->field($model, 'obs')->textarea(['rows' => 6]) ?></div>
     <div class="col-12 col-md-12">
         <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>

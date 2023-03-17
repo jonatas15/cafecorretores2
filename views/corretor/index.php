@@ -13,6 +13,38 @@ use yii\bootstrap5\Modal;
 /** @var app\models\CorretorSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
+$corretores = Corretor::find()->limit(8)->all();
+echo '<div class="row">';
+echo '<div class="col-12 col-md-6 row">';
+$i = 1;
+foreach ($corretores as $key => $val) {
+    // echo $val->nome;
+    echo '<div class="col-4 col-md-3" style="text-align: center !important;">';
+    echo '<a class="btn btn-link btn-corretor" href="?CorretorSearch[id]='.$val->id.'">';
+    if($val->foto == null || $val->foto == '' || empty($val->foto) || $val->foto == " " ) {
+        $val->foto = 'ocorretor.png';
+    }
+    echo Html::img(Yii::$app->homeUrl.'usuarios/'.$val->foto, ['style'=> [
+        'height' => '80px',
+        'width' => '80px',
+        'border-radius' => '100px',
+        'object-fit'=> 'cover'
+    ]]);
+    echo '<br>';
+    echo '<br>';
+    echo "<label>{$val->nome}</label>";
+    echo '</a>';
+    echo '</div>';
+    if ($i%4==0) {
+        echo '</div>';
+        echo '<div class="col-12 col-md-6 row">';
+    }
+    $i++;
+}
+echo '</div>';
+echo '</div>';
+echo '<div class="clearfix"></div>';
+
 $this->title = 'Corretores';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -52,18 +84,23 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'foto',
                 'filter'=>'',
-                'format'=>'html',
+                'format'=>'raw',
                 'value'=>function($data){
+                    if($data->foto == null || $data->foto == '' || empty($data->foto) || $data->foto == " " ) {
+                        $data->foto = 'ocorretor.png';
+                    }
                     return Html::img(Yii::$app->homeUrl.'usuarios/'.$data->foto, ['style'=> [
-                        'max-height' => '40px',
-                        'max-width' => '50px',
+                        'height' => '40px !important',
+                        'width' => '40px !important',
+                        'border-radius' => '100px !important',
+                        'object-fit'=> 'cover !important'
                     ]]);
                 }
             ],
             'nome',
             'email:email',
-            'celular',
             'registro',
+            'celular',
             'obs',
             [
                 'attribute' => 'id',
@@ -112,5 +149,12 @@ $this->params['breadcrumbs'][] = $this->title;
         background-color: blue;
         top: 20px !important;
         color: white !important;
+    }
+    .btn-corretor {
+        height: 100%;
+        width: 100%;
+    }
+    .btn-corretor:hover {
+        background-color: lightcyan;
     }
 </style>
