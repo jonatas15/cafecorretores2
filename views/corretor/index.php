@@ -8,6 +8,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 use yii\bootstrap5\Modal;
+use kartik\editable\Editable;
 
 /** @var yii\web\View $this */
 /** @var app\models\CorretorSearch $searchModel */
@@ -53,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?php 
+        <?php
             Modal::begin([
                 'title' => 'Novo Corretor',
                 'toggleButton' => [
@@ -73,6 +74,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?php $dataProvider->pagination->pageSize = 100; ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -101,6 +104,30 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'registro',
             'celular',
+            // 'jetimobid',
+            [
+                'attribute' => 'jetimobid',
+                'format'=>'raw',
+                'value' => function($data) {
+                    return Editable::widget([
+                        'name'=>'jetimobid', 
+                        'asPopover' => true,
+                        'value' => $data->jetimobid,
+                        'header' => 'Id no Jetimob',
+                        'size'=>'md',
+                        'options' => [
+                            'class'=>'form-control',
+                            'placeholder'=>'Enter person name...',
+                        ],
+                        'formOptions' => [
+                            'action' => [
+                                'editcampo',
+                                'id' => $data->id
+                            ]
+                        ],
+                    ]);
+                } 
+            ],
             'obs',
             [
                 'attribute' => 'id',
@@ -134,7 +161,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-
     <?php Pjax::end(); ?>
 
 </div>

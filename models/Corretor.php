@@ -40,6 +40,7 @@ class Corretor extends \yii\db\ActiveRecord
         return [
             [['nome', 'email', 'celular'], 'required'],
             [['obs'], 'string'],
+            [['jetimobid'], 'integer'],
             [['foto'], 'string'],
             [['nome'], 'string', 'max' => 250],
             [['email'], 'string', 'max' => 100],
@@ -60,7 +61,8 @@ class Corretor extends \yii\db\ActiveRecord
             'celular' => 'Celular',
             'registro' => 'Registro',
             'obs' => 'Observações',
-            'eventImage' => 'Foto'
+            'eventImage' => 'Foto',
+            'jetimobid' => 'Jetimob ID',
         ];
     }
 
@@ -128,6 +130,7 @@ class Corretor extends \yii\db\ActiveRecord
             'celular',
             'registro',
             'eventImage',
+            'jetimobid',
             'macros' => function(Corretor $model) {
                 return array_reverse($model->numacros);
             }

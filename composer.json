@@ -23,7 +23,9 @@
         "kartik-v/yii2-icons": "dev-master",
         "rmrevin/yii2-fontawesome": "~3.5",
         "kartik-v/yii2-widget-rangeinput": "dev-master",
-        "kartik-v/yii2-money": "dev-master"
+        "kartik-v/yii2-money": "dev-master",
+        "yii2mod/yii2-editable": "*",
+        "kartik-v/yii2-editable": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -17,7 +17,7 @@ class CorretorSearch extends Corretor
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'jetimobid'], 'integer'],
             [['nome', 'email', 'celular', 'registro', 'obs'], 'safe'],
         ];
     }

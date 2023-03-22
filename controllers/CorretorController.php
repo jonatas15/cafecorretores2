@@ -101,8 +101,9 @@ class CorretorController extends Controller
 
         if ($this->request->isPost && $model->load($this->request->post())) {
             $model->eventImage = UploadedFile::getInstance($model, 'eventImage');
-            if ($model->eventImage)
+            if ($model->eventImage) {
                 $model->foto = $model->eventImage->baseName.'.'.$model->eventImage->extension;
+            }
             if ($model->save()) {
                 if ($model->eventImage){
                     $model->upload();
@@ -167,5 +168,16 @@ class CorretorController extends Controller
             'html5Options' => ['min' => $min, 'max' => $max, 'style' => 'width: 100%'],
             'addon' => ['append' => ['content' => "<i class='fas fa-solid fa-$icon'></i>"]]
         ]);
+    }
+    /**
+     * Editar Campo
+     */
+    public function actionEditcampo($id) {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $r_jetimobid = $_REQUEST['jetimobid'];
+        $model = $this->findModel($id);
+        $model->jetimobid = $r_jetimobid;
+        $model->save();
+        return ['output' => $r_jetimobid, 'message'=>''];
     }
 }
