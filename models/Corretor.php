@@ -39,12 +39,12 @@ class Corretor extends \yii\db\ActiveRecord
     {
         return [
             [['nome', 'email', 'celular'], 'required'],
-            [['obs'], 'string'],
-            [['jetimobid'], 'integer'],
+            [['obs', 'imoveis'], 'string'],
+            [['jetimobid', 'numimoveis'], 'integer'],
             [['foto'], 'string'],
             [['nome'], 'string', 'max' => 250],
             [['email'], 'string', 'max' => 100],
-            [['celular', 'registro'], 'string', 'max' => 15],
+            [['celular', 'registro'], 'string', 'max' => 100],
             [['eventImage'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, gif, jpeg, PNG, JPG, GIF, JPEG']
         ];
     }
@@ -131,6 +131,8 @@ class Corretor extends \yii\db\ActiveRecord
             'registro',
             'eventImage',
             'jetimobid',
+            'imoveis',
+            'numimoveis',
             'macros' => function(Corretor $model) {
                 return array_reverse($model->numacros);
             }

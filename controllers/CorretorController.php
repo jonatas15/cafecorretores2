@@ -43,6 +43,10 @@ class CorretorController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    public function actionCorretorimoveis()
+    {
+        return $this->render('corretorimoveis');
+    }
 
     /**
      * Displays a single Corretor model.
