@@ -68,4 +68,8 @@ class Imovel extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Levante::class, ['imovel_id' => 'id']);
     }
+    public function getLevante()
+    {
+        return $this->hasOne(Levante::class, ['imovel_id' => 'id'])->one();
+    }
 }

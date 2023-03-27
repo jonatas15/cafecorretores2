@@ -140,6 +140,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'headerOptions' => ['style' => 'width:5%; text-align: center'],
             ],
+            [
+                'attribute' => 'id',
+                'header' => 'Imóveis',
+                'format' => 'raw',
+                'value' => function ($data) {
+                    return '<center>'.$this->render('imoveis', [
+                        'id' => $data->id,
+                    ]).'</center>';
+                },
+                'headerOptions' => ['style' => 'width:5%; text-align: center'],
+            ],
             // [
             //     'attribute' => 'id',
             //     'header' => 'Metas',

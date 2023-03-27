@@ -98,6 +98,12 @@ class Corretor extends \yii\db\ActiveRecord
             'mes_referencia' => SORT_DESC,
         ])->limit(12);
     }
+    public function getImovel()
+    {
+        return $this->hasMany(Imovel::class, ['corretor_id' => 'id'])->orderBy([
+            'codigo' => SORT_DESC
+        ]);
+    }
 
     /**
      * Gets query for [[Whatssends]].
