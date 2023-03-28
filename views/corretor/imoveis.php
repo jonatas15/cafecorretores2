@@ -29,7 +29,7 @@ Modal::begin([
     'title' => 'Imóveis de '.$model->nome,
     'size' => 'modal-lg',
     'toggleButton' => [
-        'label' => '🚀',
+        'label' => '🏠',
         'class' => 'btn btn-success'
     ],
     'options' => [
@@ -66,19 +66,19 @@ $head_numacros = "";
         $classetr = "";
         switch (true) {
             case $acessos_contados > 500:
-                $classetr = 'background-color: black; color: white;';
+                $classetr = 'background-color: #008000; color: #fff';
                 break;
             case $acessos_contados > 100 && $acessos_contados < 500:
-                $classetr = 'background-color: darkgreen; color: white;';
+                $classetr = 'background-color: #6eaa5e;';
                 break;
             case $acessos_contados > 50 && $acessos_contados < 100:
-                $classetr = 'background-color: green; color: black;';
+                $classetr = 'background-color: #93bf85;';
                 break;
             case $acessos_contados > 10 && $acessos_contados < 50:
-                $classetr = 'background-color: lightgreen; color: black;';
+                $classetr = 'background-color: #b7d5ac;';
                 break;
             default:
-                $classetr = 'background-color: ghostwhite; color: black;';
+                $classetr = 'background-color: #dbead5;';
                 break;
         }
         $head_numacros .= '<tr style="'.$classetr.'">'.

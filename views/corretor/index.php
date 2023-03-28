@@ -128,9 +128,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]);
                 } 
             ],
-            'obs',
+            // 'obs',
             [
                 'attribute' => 'id',
+                'filter' => false,
                 'header' => 'Nºs Macro',
                 'format' => 'raw',
                 'value' => function ($data) {
@@ -142,6 +143,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'id',
+                'filter' => false,
                 'header' => 'Imóveis',
                 'format' => 'raw',
                 'value' => function ($data) {
