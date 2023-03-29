@@ -70,6 +70,16 @@ class Imovel extends \yii\db\ActiveRecord
     }
     public function getLevante()
     {
-        return $this->hasOne(Levante::class, ['imovel_id' => 'id'])->one();
+        return $this->hasOne(Levante::class, ['imovel_id' => 'id']);
+    }
+    // Para a API
+    public function fields() {
+        return [
+            'id',
+            'codigo',
+            'acessos' => function(Imovel $model) {
+                return $model->levante->acessos;
+            }
+        ];
     }
 }

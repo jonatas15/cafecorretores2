@@ -67,6 +67,11 @@ $config = [
                     'pluralize' => false,
                     'controller' => 'api\numacros'
                 ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'pluralize' => false,
+                    'controller' => 'api\imovel'
+                ],
             ],
         ],
     ],
