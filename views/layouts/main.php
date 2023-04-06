@@ -48,7 +48,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         'options' => ['class' => 'navbar-nav me-auto mb-2 mb-lg-0'],
         'items' => [
             // ['label' => FA::icon('home').' Home', 'url' => ['/site/index']],
-            // ['label' => FA::icon('walking').' Corretores', 'url' => ['/corretor']],
+            ['label' => FA::icon('walking').' Visitas', 'url' => ['/visita']],
             // ['label' => 'About', 'url' => ['/site/about']], 
             // ['label' => 'Contact', 'url' => ['/site/contact']],
         ]

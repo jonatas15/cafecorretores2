@@ -9,6 +9,7 @@ use yii\rest\ActiveController;
  */
 
 header('Access-Control-Allow-Origin: *');
+
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS, CREATE');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 
@@ -34,6 +35,7 @@ class ImovelController extends ActiveController
     public function actions () {
         $actions = parent::actions();
         unset($actions['delete']);
+        $actions['index']['pagination'] = false;
 
         return $actions;
     }

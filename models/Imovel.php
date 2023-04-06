@@ -77,9 +77,13 @@ class Imovel extends \yii\db\ActiveRecord
         return [
             'id',
             'codigo',
+            'corretor_id',
             'acessos' => function(Imovel $model) {
-                return $model->levante->acessos;
-            }
+                return (int)$model->levante->acessos * 1;
+            },
+            'totalpage' => function() {
+                return count(\app\models\Imovel::find()->all());
+            } 
         ];
     }
 }
