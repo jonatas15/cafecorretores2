@@ -1,20 +1,21 @@
 <?php
 
 use yii\helpers\Html;
+use yii\bootstrap5\Modal;
 
 /** @var yii\web\View $this */
-/** @var app\models\Visita $model */
+/** @var app\models\Corretor $model */
 
-$this->title = 'Create Visita';
-$this->params['breadcrumbs'][] = ['label' => 'Visitas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="visita-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
+<?php Modal::begin([
+    'title' => 'Nova visita',
+    'toggleButton' => [
+        'label' => 'Registrar nova visita',
+        'class' => 'btn btn-success'
+    ],
+]); ?>
     <?= $this->render('_form', [
         'model' => $model,
+        'modo' => 'create'
     ]) ?>
-
-</div>
+<?php Modal::end(); ?>

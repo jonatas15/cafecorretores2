@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use yii\helpers\ArrayHelper;
+
 /**
  * VisitaController implements the CRUD actions for Visita model.
  */
@@ -31,6 +33,17 @@ class VisitaController extends Controller
         );
     }
 
+    public function actionFiltrar() {
+        $id = $_REQUEST['id'];
+        $imoveis = \app\models\Imovel::find()->where([
+            'corretor_id' => $id
+        ])->all();
+        $content_select = '';
+        foreach ($imoveis as $imv) {
+            $content_select .= "<option value='".$imv->id."'>".$imv->codigo."</option>";
+        }
+        return $content_select;
+    }
     /**
      * Lists all Visita models.
      *
@@ -70,8 +83,17 @@ class VisitaController extends Controller
         $model = new Visita();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+            // echo '<pre>';
+            // print_r($this->request->post());
+            // echo '</pre>';
+            if ($model->load($this->request->post())) {
+                $model->data_visita = $this->formatar_data_pro_banco($model->data_visita);
+                $model->hora_visita = str_replace([' AM', ' PM'], ':00', $model->hora_visita);
+                // echo $model->hora_visita;
+                // exit();
+                if ($model->save()) {
+                    return $this->redirect(['index']);
+                }
             }
         } else {
             $model->loadDefaultValues();
@@ -131,4 +153,14 @@ class VisitaController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    public function formatar_data_pro_banco($data) {
+        $arr = explode('/',$data);
+        return $arr[2].'-'.$arr[1].'-'.$arr[0];
+    }
+    protected function clean($string) {
+        $string = str_replace(' ', '', $string); // Replaces all spaces with hyphens.
+        $string = preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+ 
+        return preg_replace('/-+/', '', $string); // Replaces multiple hyphens with single one.
+     }
 }
