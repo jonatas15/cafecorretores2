@@ -27,8 +27,8 @@ use kartik\time\TimePicker;
                 [
                     'onchange' => '$.post("' . Yii::$app->homeUrl . "visita/filtrar?id=" .'" + $(this).val(), function(data) {
                         $("#visita-imovel_id").html(data)
-                        console.log("sss")
-                    })'
+                    })',
+                    'prompt' => 'Selecione'
                 ]); 
             ?>
         </div>
@@ -37,7 +37,7 @@ use kartik\time\TimePicker;
                 $imoveis = \app\models\Imovel::find()->all();
                 $listaimoveis = ArrayHelper::map($imoveis,'id','codigo');
             ?>
-            <?= $form->field($model, 'imovel_id')->dropDownList($listaimoveis); ?>
+            <?= $form->field($model, 'imovel_id')->dropDownList($listaimoveis, ['prompt' => 'Selecione']); ?>
         </div>
         <div class="col-6 col-md-6">
         <?= $form->field($model, 'nome_corretor')->textInput(['maxlength' => true]) ?>
@@ -79,10 +79,10 @@ use kartik\time\TimePicker;
         <!-- </div> -->
         <!-- <div class="col-6 col-md-4">
         <?php //= $form->field($model, 'obs')->textarea(['rows' => 6]) ?>
-        </div>
+        </div>-->
         <div class="col-6 col-md-4">
-        <?php //= $form->field($model, 'contrato')->textarea(['rows' => 6]) ?>
-        </div> -->
+            <?= $form->field($model, 'contrato')->dropDownList(['Venda', 'Aluguel'], ['prompt' => 'Selecione']); ?>
+        </div> 
         <div class="col-6 col-md-6">
             <label><br><br></label>
             <?= Html::submitButton('Salvar', ['class' => 'btn btn-success']) ?>

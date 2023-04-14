@@ -35,10 +35,14 @@ class VisitaController extends Controller
 
     public function actionFiltrar() {
         $id = $_REQUEST['id'];
+        $corretor = \app\models\Corretor::find()->where([
+            'id' => $id,
+        ])->one();
+        
         $imoveis = \app\models\Imovel::find()->where([
             'corretor_id' => $id
         ])->all();
-        $content_select = '';
+        $content_select = '<option  value="">Imóveis de '.$corretor->nome.'</option>';
         foreach ($imoveis as $imv) {
             $content_select .= "<option value='".$imv->id."'>".$imv->codigo."</option>";
         }

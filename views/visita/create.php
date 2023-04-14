@@ -9,6 +9,7 @@ use yii\bootstrap5\Modal;
 ?>
 <?php Modal::begin([
     'title' => 'Nova visita',
+    'size' => 'modal-lg',
     'toggleButton' => [
         'label' => 'Registrar nova visita',
         'class' => 'btn btn-success'
