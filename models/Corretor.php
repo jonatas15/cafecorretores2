@@ -10,6 +10,8 @@ use Yii;
  * This is the model class for table "corretor".
  *
  * @property int $id
+ * @property int $jetimobid
+ * @property int $idsistema
  * @property string $nome
  * @property string $email
  * @property string $celular
@@ -40,7 +42,7 @@ class Corretor extends \yii\db\ActiveRecord
         return [
             [['nome', 'email', 'celular'], 'required'],
             [['obs', 'imoveis'], 'string'],
-            [['jetimobid', 'numimoveis'], 'integer'],
+            [['jetimobid', 'numimoveis', 'idsistema'], 'integer'],
             [['foto'], 'string'],
             [['nome'], 'string', 'max' => 250],
             [['email'], 'string', 'max' => 100],
@@ -141,7 +143,8 @@ class Corretor extends \yii\db\ActiveRecord
             'numimoveis',
             'macros' => function(Corretor $model) {
                 return array_reverse($model->numacros);
-            }
+            },
+            'idsistema'
         ];
     }
 }

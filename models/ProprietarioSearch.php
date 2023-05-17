@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Corretor;
+use app\models\Proprietario;
 
 /**
- * CorretorSearch represents the model behind the search form of `app\models\Corretor`.
+ * ProprietarioSearch represents the model behind the search form of `app\models\Proprietario`.
  */
-class CorretorSearch extends Corretor
+class ProprietarioSearch extends Proprietario
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class CorretorSearch extends Corretor
     public function rules()
     {
         return [
-            [['id', 'jetimobid', 'idsistema'], 'integer'],
-            [['nome', 'email', 'celular', 'registro', 'obs'], 'safe'],
+            [['id', 'corretor_id'], 'integer'],
+            [['nome', 'email', 'telefone', 'cpf', 'cnpj', 'endereco', 'linkmaps', 'retorno'], 'safe'],
         ];
     }
 
@@ -40,16 +40,12 @@ class CorretorSearch extends Corretor
      */
     public function search($params)
     {
-        $query = Corretor::find();
+        $query = Proprietario::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-		'pageSize' => 100,
-		'defaultPageSize' => 50
-	    ],
         ]);
 
         $this->load($params);
@@ -63,13 +59,17 @@ class CorretorSearch extends Corretor
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'corretor_id' => $this->corretor_id,
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome])
             ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'celular', $this->celular])
-            ->andFilterWhere(['like', 'registro', $this->registro])
-            ->andFilterWhere(['like', 'obs', $this->obs]);
+            ->andFilterWhere(['like', 'telefone', $this->telefone])
+            ->andFilterWhere(['like', 'cpf', $this->cpf])
+            ->andFilterWhere(['like', 'cnpj', $this->cnpj])
+            ->andFilterWhere(['like', 'endereco', $this->endereco])
+            ->andFilterWhere(['like', 'linkmaps', $this->linkmaps])
+            ->andFilterWhere(['like', 'retorno', $this->retorno]);
 
         return $dataProvider;
     }

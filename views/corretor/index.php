@@ -128,6 +128,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]);
                 } 
             ],
+            [
+                'attribute' => 'idsistema',
+                'format'=>'raw',
+                'value' => function($data) {
+                    return Editable::widget([
+                        'name'=>'idsistema',
+                        'asPopover' => true,
+                        'value' => $data->idsistema,
+                        'header' => 'Id no Sistema',
+                        'size'=>'md',
+                        'options' => [
+                            'class'=>'form-control',
+                            'placeholder'=>'Enter person name...',
+                        ],
+                        'formOptions' => [
+                            'action' => [
+                                'editcampo',
+                                'id' => $data->id
+                            ]
+                        ],
+                    ]);
+                } 
+            ],
             // 'obs',
             [
                 'attribute' => 'id',

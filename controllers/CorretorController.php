@@ -179,8 +179,10 @@ class CorretorController extends Controller
     public function actionEditcampo($id) {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $r_jetimobid = $_REQUEST['jetimobid'];
+        $r_idsistema = $_REQUEST['idsistema'];
         $model = $this->findModel($id);
-        $model->jetimobid = $r_jetimobid;
+        $model->jetimobid = $r_jetimobid != "" ? $r_jetimobid : $model->jetimobid;
+        $model->idsistema = $r_idsistema != "" ? $r_idsistema : $model->idsistema;
         $model->save();
         return ['output' => $r_jetimobid, 'message'=>''];
     }

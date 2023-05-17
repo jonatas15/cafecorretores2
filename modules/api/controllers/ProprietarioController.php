@@ -25,13 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 
-class CorretorController extends ActiveController
+class ProprietarioController extends ActiveController
 {
     /**
      * Renders the index view for the module
      * @return string
      */
-    public $modelClass = 'app\models\Corretor';
+    public $modelClass = 'app\models\Proprietario';
     public function actions () {
         $actions = parent::actions();
         unset($actions['delete']);
@@ -47,7 +47,7 @@ class CorretorController extends ActiveController
 
     return new ActiveDataProvider([
 
-        'query' => \app\models\Corretor::find(),
+        'query' => \app\models\Proprietario::find(),
 
         'pagination' => false,
 
